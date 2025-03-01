@@ -84,7 +84,7 @@ ndk::ScopedAStatus RichtapVibrator::on(int32_t timeoutMs,
         send_handle_result(callback, timeout_ms, RICHTAP_HANDLE_SUCCESS);
         return ndk::ScopedAStatus::ok();
     } else {
-        ALOGE("aac richtap not support");
+        ALOGE("aac richtap is not supported");
         send_handle_result(callback, DEFAULT_RETURN_TIME_OUT, RICHTAP_HANDLE_NOT_SUPPORT);
         return ndk::ScopedAStatus(AStatus_fromExceptionCode(EX_UNSUPPORTED_OPERATION));
     }
@@ -103,7 +103,7 @@ ndk::ScopedAStatus RichtapVibrator::setAmplitude(int32_t amplitude,
         send_handle_result(callback, DEFAULT_RETURN_TIME_OUT, RICHTAP_HANDLE_SUCCESS);
         return ndk::ScopedAStatus::ok();
     } else {
-        ALOGE("aac richtap not support");
+        ALOGE("aac richtap is not supported");
         send_handle_result(callback, DEFAULT_RETURN_TIME_OUT, RICHTAP_HANDLE_NOT_SUPPORT);
         return ndk::ScopedAStatus(AStatus_fromExceptionCode(EX_UNSUPPORTED_OPERATION));
     }
@@ -126,7 +126,7 @@ ndk::ScopedAStatus RichtapVibrator::perform(int32_t effect, int8_t es,
         send_handle_result(callback, playLengthMs, RICHTAP_HANDLE_SUCCESS);
         return ndk::ScopedAStatus::ok();
     } else {
-        ALOGE("aac richtap not support");
+        ALOGE("aac richtap is not supported");
         send_handle_result(callback, DEFAULT_RETURN_TIME_OUT, RICHTAP_HANDLE_NOT_SUPPORT);
         return ndk::ScopedAStatus(AStatus_fromExceptionCode(EX_UNSUPPORTED_OPERATION));
     }
@@ -153,7 +153,7 @@ ndk::ScopedAStatus RichtapVibrator::performEnvelope(
         send_handle_result(callback, time_out, RICHTAP_HANDLE_SUCCESS);
         return ndk::ScopedAStatus::ok();
     } else {
-        ALOGE("aac richtap not support");
+        ALOGE("aac richtap is not supported");
         send_handle_result(callback, DEFAULT_RETURN_TIME_OUT, RICHTAP_HANDLE_NOT_SUPPORT);
         return ndk::ScopedAStatus(AStatus_fromExceptionCode(EX_UNSUPPORTED_OPERATION));
     }
@@ -181,7 +181,7 @@ ndk::ScopedAStatus RichtapVibrator::performRtp(const ndk::ScopedFileDescriptor& 
         send_handle_result(callback, timeout_ms, RICHTAP_HANDLE_SUCCESS);
         return ndk::ScopedAStatus::ok();
     } else {
-        ALOGE("aac richtap not support");
+        ALOGE("aac richtap is not supported");
         send_handle_result(callback, DEFAULT_RETURN_TIME_OUT, RICHTAP_HANDLE_NOT_SUPPORT);
         return ndk::ScopedAStatus(AStatus_fromExceptionCode(EX_UNSUPPORTED_OPERATION));
     }
@@ -208,7 +208,7 @@ ndk::ScopedAStatus RichtapVibrator::performHe(int32_t looper, int32_t interval, 
         send_handle_result(callback, timeout_ms, RICHTAP_HANDLE_SUCCESS);
         return ndk::ScopedAStatus::ok();
     } else {
-        ALOGE("aac richtap not support");
+        ALOGE("aac richtap is not supported");
         send_handle_result(callback, DEFAULT_RETURN_TIME_OUT, RICHTAP_HANDLE_NOT_SUPPORT);
         return ndk::ScopedAStatus(AStatus_fromExceptionCode(EX_UNSUPPORTED_OPERATION));
     }
@@ -240,7 +240,7 @@ ndk::ScopedAStatus RichtapVibrator::performHeParam(
         }
         return ndk::ScopedAStatus::ok();
     } else {
-        ALOGE("aac richtap not support");
+        ALOGE("aac richtap is not supported");
         send_handle_result(callback, DEFAULT_RETURN_TIME_OUT, RICHTAP_HANDLE_NOT_SUPPORT);
         return ndk::ScopedAStatus(AStatus_fromExceptionCode(EX_UNSUPPORTED_OPERATION));
     }
@@ -275,7 +275,7 @@ ndk::ScopedAStatus RichtapVibrator::setDynamicScale(
         send_handle_result(callback, DEFAULT_RETURN_TIME_OUT, RICHTAP_HANDLE_SUCCESS);
         return ndk::ScopedAStatus::ok();
     } else {
-        ALOGE("aac richtap not support");
+        ALOGE("aac richtap is not supported");
         send_handle_result(callback, DEFAULT_RETURN_TIME_OUT, RICHTAP_HANDLE_NOT_SUPPORT);
         return ndk::ScopedAStatus(AStatus_fromExceptionCode(EX_UNSUPPORTED_OPERATION));
     }
@@ -293,7 +293,7 @@ ndk::ScopedAStatus RichtapVibrator::setF0(int32_t f0,
         send_handle_result(callback, DEFAULT_RETURN_TIME_OUT, RICHTAP_HANDLE_SUCCESS);
         return ndk::ScopedAStatus::ok();
     } else {
-        ALOGE("aac richtap not support");
+        ALOGE("aac richtap is not supported");
         send_handle_result(callback, DEFAULT_RETURN_TIME_OUT, RICHTAP_HANDLE_NOT_SUPPORT);
         return ndk::ScopedAStatus(AStatus_fromExceptionCode(EX_UNSUPPORTED_OPERATION));
     }
@@ -309,7 +309,7 @@ ndk::ScopedAStatus RichtapVibrator::stop(const std::shared_ptr<IRichtapCallback>
             return ndk::ScopedAStatus::ok();
         }
     } else {
-        ALOGE("aac richtap not support");
+        ALOGE("aac richtap is not supported");
         send_handle_result(callback, DEFAULT_RETURN_TIME_OUT, RICHTAP_HANDLE_NOT_SUPPORT);
         return ndk::ScopedAStatus(AStatus_fromExceptionCode(EX_UNSUPPORTED_OPERATION));
     }
