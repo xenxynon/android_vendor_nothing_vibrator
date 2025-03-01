@@ -1,3 +1,8 @@
+on late-fs
+    chmod 0666 /dev/aw8697_haptic
+    chown system system /dev/aac_richtap_dev
+    chown system system /dev/aw8697_haptic
+
 on late-init
     chown system system /sys/class/qcom-haptics/primitive_duration
     chmod 0600 /sys/class/qcom-haptics/primitive_duration
@@ -9,3 +14,6 @@ service vendor.qti.vibrator /vendor/bin/hw/vendor.qti.hardware.vibrator.service
 
 on late-init
     write /sys/class/leds/vibrator/trigger "transient"
+
+    setenv RICHTAP_DEVICE_PATH  /dev/aw8697_haptic
+    setenv ENV_RICHTAP_CONFIG_PATH /odm/etc/aac_richtap.config

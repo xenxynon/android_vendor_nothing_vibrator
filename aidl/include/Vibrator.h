@@ -34,8 +34,9 @@
 #pragma once
 
 #include <aidl/android/hardware/vibrator/BnVibrator.h>
-#include <thread>
+
 #include <mutex>
+#include <thread>
 
 namespace aidl {
 namespace android {
@@ -43,10 +44,10 @@ namespace hardware {
 namespace vibrator {
 
 class InputFFDevice {
-public:
+  public:
     InputFFDevice();
-    int playEffect(int effectId, EffectStrength es, long *playLengthMs);
-    int playPrimitive(int primitiveId, float amplitude, long *playLengthMs);
+    int playEffect(int effectId, EffectStrength es, long* playLengthMs);
+    int playPrimitive(int primitiveId, float amplitude, long* playLengthMs);
     int on(int32_t timeoutMs);
     int off();
     int setAmplitude(uint8_t amplitude);
@@ -55,8 +56,8 @@ public:
     bool mSupportExternalControl;
     bool mInExternalControl;
 
-private:
-    int play(int effectId, uint32_t timeoutMs, long *playLengthMs);
+  private:
+    int play(int effectId, uint32_t timeoutMs, long* playLengthMs);
     int mVibraFd;
     int16_t mCurrAppId;
     int16_t mCurrMagnitude;
@@ -64,41 +65,44 @@ private:
 };
 
 class LedVibratorDevice {
-public:
+  public:
     LedVibratorDevice();
     int on(int32_t timeoutMs);
     int off();
     bool mDetected;
-private:
-    int write_value(const char *file, const char *value);
+
+  private:
+    int write_value(const char* file, const char* value);
 };
 
 class OffloadGlinkConnection {
-public:
+  public:
     int GlinkOpen(std::string& dev);
     int GlinkClose();
     int GlinkPoll();
-    int GlinkRead(uint8_t *data, size_t size);
-    int GlinkWrite(uint8_t *buf, size_t buflen);
-private:
+    int GlinkRead(uint8_t* data, size_t size);
+    int GlinkWrite(uint8_t* buf, size_t buflen);
+
+  private:
     std::string dev_name;
     int fd;
 };
 
 class PatternOffload {
-public:
+  public:
     PatternOffload();
     void SSREventListener(void);
     void SendPatterns();
     int mEnabled;
-private:
+
+  private:
     OffloadGlinkConnection GlinkCh;
     int initChannel();
-    int sendData(uint8_t *data, int len);
+    int sendData(uint8_t* data, int len);
 };
 
 class Vibrator : public BnVibrator {
-public:
+  public:
     class InputFFDevice ff;
     class LedVibratorDevice ledVib;
     Vibrator();
@@ -108,10 +112,10 @@ public:
     ndk::ScopedAStatus getCapabilities(int32_t* _aidl_return) override;
     ndk::ScopedAStatus off() override;
     ndk::ScopedAStatus on(int32_t timeoutMs,
-            const std::shared_ptr<IVibratorCallback>& callback) override;
+                          const std::shared_ptr<IVibratorCallback>& callback) override;
     ndk::ScopedAStatus perform(Effect effect, EffectStrength strength,
-            const std::shared_ptr<IVibratorCallback>& callback,
-            int32_t* _aidl_return) override;
+                               const std::shared_ptr<IVibratorCallback>& callback,
+                               int32_t* _aidl_return) override;
     ndk::ScopedAStatus getSupportedEffects(std::vector<Effect>* _aidl_return) override;
     ndk::ScopedAStatus setAmplitude(float amplitude) override;
     ndk::ScopedAStatus setExternalControl(bool enabled) override;
@@ -125,20 +129,20 @@ public:
     ndk::ScopedAStatus getSupportedAlwaysOnEffects(std::vector<Effect>* _aidl_return) override;
     ndk::ScopedAStatus alwaysOnEnable(int32_t id, Effect effect, EffectStrength strength) override;
     ndk::ScopedAStatus alwaysOnDisable(int32_t id) override;
-    ndk::ScopedAStatus getResonantFrequency(float *resonantFreqHz) override;
-    ndk::ScopedAStatus getQFactor(float *qFactor) override;
-    ndk::ScopedAStatus getFrequencyResolution(float *freqResolutionHz) override;
-    ndk::ScopedAStatus getFrequencyMinimum(float *freqMinimumHz) override;
-    ndk::ScopedAStatus getBandwidthAmplitudeMap(std::vector<float> *_aidl_return) override;
-    ndk::ScopedAStatus getPwlePrimitiveDurationMax(int32_t *durationMs) override;
-    ndk::ScopedAStatus getPwleCompositionSizeMax(int32_t *maxSize) override;
+    ndk::ScopedAStatus getResonantFrequency(float* resonantFreqHz) override;
+    ndk::ScopedAStatus getQFactor(float* qFactor) override;
+    ndk::ScopedAStatus getFrequencyResolution(float* freqResolutionHz) override;
+    ndk::ScopedAStatus getFrequencyMinimum(float* freqMinimumHz) override;
+    ndk::ScopedAStatus getBandwidthAmplitudeMap(std::vector<float>* _aidl_return) override;
+    ndk::ScopedAStatus getPwlePrimitiveDurationMax(int32_t* durationMs) override;
+    ndk::ScopedAStatus getPwleCompositionSizeMax(int32_t* maxSize) override;
     ndk::ScopedAStatus getSupportedBraking(std::vector<Braking>* supported) override;
-    ndk::ScopedAStatus composePwle(const std::vector<PrimitivePwle> &composite,
-                               const std::shared_ptr<IVibratorCallback> &callback) override;
-private:
-    static void composePlayThread(Vibrator *vibrator,
-                        const std::vector<CompositeEffect>& composite,
-                        const std::shared_ptr<IVibratorCallback>& callback);
+    ndk::ScopedAStatus composePwle(const std::vector<PrimitivePwle>& composite,
+                                   const std::shared_ptr<IVibratorCallback>& callback) override;
+
+  private:
+    static void composePlayThread(Vibrator* vibrator, const std::vector<CompositeEffect>& composite,
+                                  const std::shared_ptr<IVibratorCallback>& callback);
     std::thread composeThread;
     int epollfd;
     int pipefd[2];

@@ -27,8 +27,8 @@
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef  VIBRATOR_PATTERNS_H
-#define  VIBRATOR_PATTERNS_H
+#ifndef VIBRATOR_PATTERNS_H
+#define VIBRATOR_PATTERNS_H
 
 #include <sys/types.h>
 
@@ -63,12 +63,9 @@ enum effect_type {
     EFFECT_TYPE_FIFO_STREAMING,
 };
 
-enum offload_status {
-    OFFLOAD_SUCCESS = 0,
-    OFFLOAD_FAILURE = 1
-};
+enum offload_status { OFFLOAD_SUCCESS = 0, OFFLOAD_FAILURE = 1 };
 
-int get_pattern_config(uint8_t **ptr, uint32_t *size);
-int get_pattern_data(uint8_t **ptr, uint32_t *size);
-void free_pattern_mem(uint8_t *ptr);
+int get_pattern_config(uint8_t** ptr, uint32_t* size);
+int get_pattern_data(uint8_t** ptr, uint32_t* size);
+void free_pattern_mem(uint8_t* ptr);
 #endif
